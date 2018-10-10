@@ -1,0 +1,92 @@
+Parameters:
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+Resources:
+  Ec2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: m4.large
+      ImageId: ami-0405a63f383fddd6b # Ubuntu AMI
+      SecurityGroups:
+        - !Ref DevStackAccess
+      Tags:
+        - Key: "Name"
+          Value: "DevStack"
+  DevStackAccess:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Access for DevStack
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '443'
+          ToPort: '443'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '3306'
+          ToPort: '3306'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '5000'
+          ToPort: '5000'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '5672'
+          ToPort: '5672'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '5900'
+          ToPort: '5999'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '6000'
+          ToPort: '6002'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '6080'
+          ToPort: '6082'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '8000'
+          ToPort: '8000'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '8003'
+          ToPort: '8003'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '8080'
+          ToPort: '8080'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '8386'
+          ToPort: '8386'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '8773'
+          ToPort: '8777'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '9191'
+          ToPort: '9191'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '9292'
+          ToPort: '9292'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '9696'
+          ToPort: '9696'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '35357'
+          ToPort: '35357'
+          CidrIp: 0.0.0.0/0
